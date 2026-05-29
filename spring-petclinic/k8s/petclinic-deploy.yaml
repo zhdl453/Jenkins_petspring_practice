@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-deploy
+  namespace: app
+spec:
+  replicas: 2   # 최소 2개 이상으로 설정
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: yerimy/penguin-spring:latest   # Jenkins가 빌드/푸시한 이미지
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

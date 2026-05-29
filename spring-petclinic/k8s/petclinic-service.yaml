@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-service
+  namespace: app
+spec:
+  type: ClusterIP #ClusterIP # 1. ClusterIP에서 NodePort로 변경!
+  selector:
+    app: petclinic
+  ports:
+  - port: 80
+    targetPort: 8080
